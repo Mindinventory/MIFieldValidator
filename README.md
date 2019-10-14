@@ -4,6 +4,20 @@ Field Validator is the simplest way to use custom field validator.This is one of
 ### MIFieldValidator
 ![image](/Media/MIFieldValidator.gif)
 
+### Methods : 11
+
+1) static func isUserCanAbleToLogin(_ userName: String, _ password: String, _ isEmailLogin: Bool = true) -> Bool
+2) static func isValidData(_ validationModel: [ValidationModel]) -> Bool
+3) static func isMessageInRange(_ text: String?, _ charMaxLimit: Int, _ message: String) -> Bool
+4) static func changePassword(currentPassword: String, _ oldPassword: String, _ newPassword: String, _ confirmPassword: String) -> Bool
+5) static func checkPasswordsSame(_ password1: String, _ password2: String, _ isOldAndCurrent: Bool) -> Bool
+6) static func isMatchedPasswords(_ password: String?, _ cPassword: String?) -> Bool
+7) static func isValidPassword(_ text: String?, _ message: String?) -> Bool
+8) static func isValidMobileNumber(_ text: String?) -> Bool
+9) static func isValidEmail(_ text: String?) -> Bool
+10) static func isNotBlank(_ text: String?, _ message: String) -> Bool
+11) static func isDOB(_ minimumAge: Int = minAge, text: String?, date: Date?) -> Bool
+
 ### Key features & Use
 
 - - - > Check Required Field(Not Empty) (Like FirstName, LastName, UserName etc…)
