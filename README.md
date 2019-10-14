@@ -8,49 +8,49 @@ Field Validator is the simplest way to use custom field validator.This is one of
 
 - - - > Check Required Field(Not Empty) (Like FirstName, LastName, UserName etc…)
 
-EX:-  Like Full Name Textfield name is txtFName: 
+EX:- Full Name Textfield -> txtFName: 
 
 		MIValidation.isValidData([ValidationModel(validation: .notEmpty, value: txtFName.text, message: “Blank Full Name”)])
 
 - - - > Validate Message Maximum Character Range
 
-EX:-  Like Full Name Textfield name is txtFName: 
+EX:- Full Name Textfield -> txtFName: 
 
 		MIValidation.isValidData([ValidationModel(validation: .msgRange, value: txtFName.text, message: “Blank Full Name”)])
 
 - - - > Valid Email Address
 
-EX:-  Like Email Textfield name is txtFEmail: 
+EX:- Email Textfield -> txtFEmail: 
 
 	  MIValidation.isValidEmail(txtFEmail.text) — Return True or False
 
 - - - > Valid Phone Number
 		
-EX:-  Like PhoneNumber Textfield name is txtFPhoneNumber: 
+EX:- PhoneNumber Textfield -> txtFPhoneNumber: 
 
 	  MIValidation.isValidMobileNumber(txtFPhoneNumber.text) — Return True or False
 
 - - - > Validate Date of Birth (Minimum Age Validation)
 
-EX:-  Like DOB Textfield name is txtFDOB: 
+EX:- DOB Textfield -> txtFDOB: 
 
 		MIValidation.isValidData([ValidationModel(validation: .dateOfBirth, value: txtFDOB.text, message: “Blank Date Of Birth”)])
 
 - - - > Validate Password
 
-EX:-  Like Password Textfield name is txtFPassword: 
+EX:- Password Textfield -> txtFPassword: 
 
 		MIValidation.isValidData([ValidationModel(validation: .password, value: txtFDOB.text, message: “Blank Password”)])
 
 - - - > Check Equality and Comparison
 
-EX:-  Like New Password Textfield name is txtFNewPass and  Confirm Password Textfield Name is txtFCPass : 
+EX:- New Password Textfield -> txtFNewPass and Confirm Password -> txtFCPass : 
 
 		MIValidation.checkPasswordsSame(txtFNewPass.text,  txtFCPass.text) — Return True Or False 
 
 - - - > Validate Credential  of Login Screen 
 
-EX:-  Like Email Textfield name is txtFEmail and  Password Textfield Name is txtFPassword : 
+EX:- Email Textfield  -> txtFEmail and Password Textfield -> txtFPassword : 
 
 		— For Login Validation Only Call This
 
@@ -58,7 +58,7 @@ EX:-  Like Email Textfield name is txtFEmail and  Password Textfield Name is txt
 
 - - - > Validate Change Password
 
-EX:-  Like TextField Value
+EX:-  TextField Value
 		- CurrentPassword = abc@1234
 		- OldPassword = txtFOldPass
 		- NewPassword = txtFNewPass
@@ -66,11 +66,12 @@ EX:-  Like TextField Value
 	
 	  — For Change Password Validation Only Call This
 
-	  MIValidation.changePassword(currentPassword: “abc@1234”, txtFOldPass.text, txtFNewPass.text, txtFConfirmPass.text) — Return True or False
+	  MIValidation.changePassword(currentPassword: “abc@1234”, txtFOldPass.text, txtFNewPass.text, txtFConfirmPass.text)  		
+	  — Return True or False
 
 - - - > Validate SignUp with Normal Fields
 
-EX:-  Like validation Array Look 
+EX:-  validation Array Look 
 
 		arrValidationModel = [ValidationModel(validation: .msgRange, value: txtFName.text, message: “Blank Full Name”),
  						ValidationModel(validation: .email, value: txtFEmailAddress.text, message: “Blank Email Address”),
