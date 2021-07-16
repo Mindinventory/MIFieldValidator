@@ -8,21 +8,18 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
-
-    override func viewDidLoad() {
+final class HomeVC: UIViewController {
+    // MARK:- View LifeCycle -
+   override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
     }
 }
 
-// MARK:- General Methods
-// MARK:-
-
+// MARK:- General Methods -
 extension HomeVC {
-    
-    func initialize() {
-        
+    fileprivate func initialize() {
+        self.navigationController?.navigationBar.isHidden = false
         // Set Left Bar Button in Navigation Bar
         let btnLogout = UIBarButtonItem(image: UIImage(named: "icLogOut"), style: .plain, target: self, action: #selector(onBack))
         self.navigationItem.leftBarButtonItem = btnLogout
@@ -30,19 +27,16 @@ extension HomeVC {
     }
 }
 
-// MARK:- Action Events
-// MARK:-
-
+// MARK:- Action Events -
 extension HomeVC {
-    
     @IBAction func onChangePasswordClicked(_ sender: UIButton) {
         if let changePasswordVc = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordVC") as? ChangePasswordVC {
             self.navigationController?.pushViewController(changePasswordVc, animated: true)
         }
     }
-    
+
     @objc func onBack() {
-        
+        self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.popToRootViewController(animated: true)
     }
 }

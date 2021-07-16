@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06E6397A26A17EEA00D99868 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E6397926A17EEA00D99868 /* InputTextField.swift */; };
 		5B2B2DAD234F6418005351E2 /* ExtensionUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B2DAC234F6418005351E2 /* ExtensionUITextField.swift */; };
 		5B879B38234DB5ED007D8BAE /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B879B37234DB5ED007D8BAE /* ChangePasswordVC.swift */; };
 		5B879B3A234DE428007D8BAE /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B879B39234DE428007D8BAE /* SignUpVC.swift */; };
@@ -19,9 +20,11 @@
 		7041EABC234864FD00273526 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7041EABA234864FD00273526 /* LaunchScreen.storyboard */; };
 		7041EAC4234865C200273526 /* MIValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7041EAC3234865C200273526 /* MIValidations.swift */; };
 		B5938B262CD0FEA74CFE0D25 /* Pods_ValidationsDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A718F8F2E14FC6257E4EE18 /* Pods_ValidationsDemo.framework */; };
+		B8B812F4269EE65F0007E149 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B812F3269EE65F0007E149 /* ExtensionUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06E6397926A17EEA00D99868 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		2A718F8F2E14FC6257E4EE18 /* Pods_ValidationsDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ValidationsDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FCA98C63A8D686B381625A /* Pods-ValidationsDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValidationsDemo.release.xcconfig"; path = "Target Support Files/Pods-ValidationsDemo/Pods-ValidationsDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5B2B2DAC234F6418005351E2 /* ExtensionUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUITextField.swift; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 		7041EABB234864FD00273526 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7041EABD234864FD00273526 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7041EAC3234865C200273526 /* MIValidations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIValidations.swift; sourceTree = "<group>"; };
+		B8B812F3269EE65F0007E149 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		E72921E54AAFDF35938A99C4 /* Pods-ValidationsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ValidationsDemo.debug.xcconfig"; path = "Target Support Files/Pods-ValidationsDemo/Pods-ValidationsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,11 +67,8 @@
 		5BEF2571235471EF007393DB /* UIViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7041EAB3234864FB00273526 /* LoginVC.swift */,
-				5B879B39234DE428007D8BAE /* SignUpVC.swift */,
-				5B879B37234DB5ED007D8BAE /* ChangePasswordVC.swift */,
-				5BEF25742354721C007393DB /* ForgotPasswordVC.swift */,
-				5BEF257623547410007393DB /* HomeVC.swift */,
+				B84CE96926A04BCD0032F7E8 /* Core */,
+				B84CE96A26A04BD40032F7E8 /* Others */,
 			);
 			path = UIViewControllers;
 			sourceTree = "<group>";
@@ -94,15 +95,60 @@
 			isa = PBXGroup;
 			children = (
 				7041EAB1234864FB00273526 /* AppDelegate.swift */,
-				7041EAC3234865C200273526 /* MIValidations.swift */,
-				5B2B2DAC234F6418005351E2 /* ExtensionUITextField.swift */,
-				7041EAB5234864FB00273526 /* Main.storyboard */,
+				B8B812F7269F181E0007E149 /* Helper */,
+				B8B812F5269F18030007E149 /* Extensions */,
+				B8B812F6269F18140007E149 /* Storyboard */,
 				5BEF2571235471EF007393DB /* UIViewControllers */,
 				7041EAB8234864FD00273526 /* Assets.xcassets */,
 				7041EABA234864FD00273526 /* LaunchScreen.storyboard */,
 				7041EABD234864FD00273526 /* Info.plist */,
 			);
 			path = ValidationsDemo;
+			sourceTree = "<group>";
+		};
+		B84CE96926A04BCD0032F7E8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7041EAB3234864FB00273526 /* LoginVC.swift */,
+				5B879B39234DE428007D8BAE /* SignUpVC.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B84CE96A26A04BD40032F7E8 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5B879B37234DB5ED007D8BAE /* ChangePasswordVC.swift */,
+				5BEF25742354721C007393DB /* ForgotPasswordVC.swift */,
+				5BEF257623547410007393DB /* HomeVC.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		B8B812F5269F18030007E149 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B2DAC234F6418005351E2 /* ExtensionUITextField.swift */,
+				B8B812F3269EE65F0007E149 /* ExtensionUIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B8B812F6269F18140007E149 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				7041EAB5234864FB00273526 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		B8B812F7269F181E0007E149 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				06E6397926A17EEA00D99868 /* InputTextField.swift */,
+				7041EAC3234865C200273526 /* MIValidations.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		D81936D42CE4E14CAFD7C3C0 /* Pods */ = {
@@ -229,9 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06E6397A26A17EEA00D99868 /* InputTextField.swift in Sources */,
 				5B2B2DAD234F6418005351E2 /* ExtensionUITextField.swift in Sources */,
 				5BEF257723547410007393DB /* HomeVC.swift in Sources */,
 				5BEF25752354721C007393DB /* ForgotPasswordVC.swift in Sources */,
+				B8B812F4269EE65F0007E149 /* ExtensionUIView.swift in Sources */,
 				5B879B3A234DE428007D8BAE /* SignUpVC.swift in Sources */,
 				7041EAB4234864FB00273526 /* LoginVC.swift in Sources */,
 				5B879B38234DB5ED007D8BAE /* ChangePasswordVC.swift in Sources */,

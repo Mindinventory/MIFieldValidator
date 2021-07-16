@@ -10,48 +10,38 @@ import UIKit
 
 final class LoginVC: UIViewController {
 
-    // MARK:- UI Outlets
-    // MARK:-
-    
+    // MARK:- IBOutlets -
+    @IBOutlet weak var viewFUserImage: UIView!{
+        didSet{
+            viewFUserImage.configShadowAndBorder()
+        }
+    }
+    @IBOutlet weak var viewFpasswordImage: UIView!{
+        didSet{
+            viewFpasswordImage.configShadowAndBorder()
+        }
+    }
+    @IBOutlet weak var btnLogin: UIButton!{
+        didSet{
+            btnLogin.applyCircle()
+        }
+    }
     @IBOutlet weak private var txtFEmail: UITextField!
     @IBOutlet weak private var txtFPassword: UITextField!
-    
-    // MARK:- View LifeCycle
-    // MARK:-
+    @IBOutlet weak var imageVpassworkKey: UIImageView!
+    @IBOutlet weak var imageVuser: UIImageView!
+
+    // MARK:- View LifeCycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialize()
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
 
-// MARK:- General Methods
-// MARK:-
-
+//MARK:- Action methods -
 extension LoginVC {
-    
-    func initialize() {
-        
-        // Set Navigation Bar Transperent
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        
-        // Set Right Image in TextField
-        self.txtFEmail.addRightImageAsRightView(strImgName: "ic_user", rightPadding: 10)
-        self.txtFPassword.addRightImageAsRightView(strImgName: "ic_key", rightPadding: 10)
-    }
-}
-
-//MARK:- Action methods
-//MARK:-
-
-extension LoginVC {
-    
     @IBAction func onLoginClicked(_ sender: UIButton) {
-        
         // Check Validation For Login Screen
-        
         if MIValidation.isUserCanAbleToLogin(txtFEmail.text ?? "",txtFPassword.text ?? "") {
             self.txtFEmail.text = ""
             self.txtFPassword.text = ""
@@ -60,20 +50,27 @@ extension LoginVC {
             }
         }
     }
-    
+
     @IBAction func onForgotPassClicked(_ sender: UIButton) {
-        
         // Navigate to Forgot Password Screen
         if let forgotPasswordVc = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordVC") {
             self.navigationController?.pushViewController(forgotPasswordVc, animated: true)
         }
     }
-    
+
     @IBAction func onSignUpClicked(_ sender: UIButton) {
-        
         // Navigate to Sign Up Screen
         if let signUpVc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVC") {
             self.navigationController?.pushViewController(signUpVc, animated: true)
         }
+    }
+}
+
+//MARK: - TextField Delegate -
+extension LoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        txtFPassword.resignFirstResponder()
+        txtFEmail.resignFirstResponder()
+        return true
     }
 }

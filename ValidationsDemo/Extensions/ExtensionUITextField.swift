@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-// MARK: - Extension of UITextField For UITextField's placeholder Color.
+// MARK: - Extension of UITextField For UITextField's placeholder Color. -
 extension UITextField {
 
     /// Placeholder Color of UITextField , as it is @IBInspectable so you can directlly set placeholder color of UITextField From Interface Builder , No need to write any number of Lines.
@@ -26,7 +26,28 @@ extension UITextField {
     }
 }
 
-// MARK: - Extension of UITextField For Adding Left & Right View For UITextField.
+
+// MARK: - Extension of UITextField For Adding Left & Right padding of text -
+
+extension UITextField {
+
+    func setEmptyLeftView(WithPadding padding:CGFloat){
+        let paddingView = UIView(frame: CGRect(origin: CGPoint.zero,
+                                               size: CGSize(width: padding, height: self.frame.size.height)))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+
+    func setEmptyRightView(WithPadding padding:CGFloat) {
+        let paddingView = UIView(frame: CGRect(origin: CGPoint.zero,
+                                               size: CGSize(width: padding, height: self.frame.size.height)))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+}
+
+
+// MARK: - Extension of UITextField For Adding Left & Right View For UITextField. -
 extension UITextField {
 
     /// This method is used to add a leftView of UITextField.
@@ -61,7 +82,7 @@ extension UITextField {
 
 typealias selectedDateHandler = ((Date) -> ())
 
-// MARK: - Extension of UITextField For DatePicker as UITextField's inputView.
+// MARK: - Extension of UITextField For DatePicker as UITextField's inputView. -
 extension UITextField {
 
     /// This Private Structure is used to create all AssociatedObjectKey which will be used within this extension.
@@ -88,7 +109,7 @@ extension UITextField {
     /// - Returns: return a newly created UIDatePicker.
     private func addDatePicker() -> UIDatePicker {
 
-        let txtFieldDatePicker = UIDatePicker()
+        let txtFieldDatePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 200))
         self.inputView = txtFieldDatePicker
         txtFieldDatePicker.addTarget(self, action: #selector(self.handleDateSelection(sender:)), for: .valueChanged)
         objc_setAssociatedObject(self, &AssociatedObjectKey.txtFieldDatePicker, txtFieldDatePicker, .OBJC_ASSOCIATION_RETAIN)
@@ -189,7 +210,7 @@ extension UITextField {
         let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: CScreenWidth, height: 44.0))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let btnDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.btnDoneTapped(sender:)))
-        toolBar.setItems([flexibleSpace , btnDone], animated: true)
+        toolBar.setItems([flexibleSpace, btnDone], animated: true)
         return toolBar
     }
 
@@ -203,6 +224,7 @@ extension UITextField {
 
 typealias selectedPickerDataHandler = ((_ text: String, _ row: Int, _ component: Int) -> ())
 
+// MARK:- UIPickerViewDataSource  & UIPickerViewDelegate -
 extension UITextField: UIPickerViewDataSource, UIPickerViewDelegate {
 
     fileprivate struct AssociatedObjectKeyTwo {
@@ -282,6 +304,7 @@ extension UITextField: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 }
 
+// MARK:- UITextFieldDelegate -
 extension UITextField: UITextFieldDelegate {
 
     /// Delegate method of UITextFieldDelegate.
@@ -301,7 +324,7 @@ extension UITextField: UITextFieldDelegate {
 
             if let arrPickerData = arrPickerData {
 
-                if let index = arrPickerData.index(where: {($0 as? String) == textField.text}) {
+                if let index = arrPickerData.firstIndex(where: {($0 as? String) == textField.text}) {
 
                     self.text = "\(arrPickerData[index])"
                     txtFieldPickerView?.selectRow(index, inComponent: 0, animated: false)

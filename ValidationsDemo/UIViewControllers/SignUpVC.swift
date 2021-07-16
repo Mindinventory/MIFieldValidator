@@ -13,18 +13,86 @@ class SignUpVC: UIViewController {
     // MARK:- UI Outlets
     // MARK:-
     
-    @IBOutlet weak var txtFName: UITextField!
-    @IBOutlet weak var txtFEmailAddress: UITextField!
-    @IBOutlet weak var txtFMobileNumber: UITextField!
-    @IBOutlet weak var txtFGender: UITextField!
-    @IBOutlet weak var txtFDOB: UITextField!
-    @IBOutlet weak var txtFPassword: UITextField!
+    @IBOutlet weak var viewFPasswordImage: UIView!{
+        didSet{
+            viewFPasswordImage.addConfig()
+        }
+    }
+    @IBOutlet weak var viewFDOBImage: UIView!{
+        didSet{
+            viewFDOBImage.addConfig()
+        }
+    }
+    @IBOutlet weak var viewFGenderImage: UIView!{
+        didSet{
+            viewFGenderImage.addConfig()
+        }
+    }
+    @IBOutlet weak var viewFMobileNumberImage: UIView!{
+        didSet{
+            viewFMobileNumberImage.addConfig()
+        }
+    }
+    @IBOutlet weak var viewFEmailAddressImage: UIView!{
+        didSet{
+            viewFEmailAddressImage.addConfig()
+        }
+    }
+    @IBOutlet weak var viewFNameImage: UIView!{
+        didSet{
+            viewFNameImage.addConfig()
+        }
+    }
+    @IBOutlet weak var txtFName: UITextField!{
+        didSet{
+            txtFName.addConfig()
+        }
+    }
+    @IBOutlet weak var txtFEmailAddress: UITextField!{
+        didSet{
+            txtFEmailAddress.addConfig()
+        }
+    }
+    @IBOutlet weak var txtFMobileNumber: UITextField!{
+        didSet{
+            txtFMobileNumber.addConfig()
+        }
+    }
+    @IBOutlet weak var txtFGender: UITextField!{
+        didSet{
+            txtFGender.addConfig()
+        }
+    }
+    @IBOutlet weak var txtFDOB: UITextField!{
+        didSet{
+            txtFDOB.addConfig()
+        }
+    }
+    @IBOutlet weak var txtFPassword: UITextField!{
+        didSet{
+            txtFPassword.addConfig()
+        }
+    }
+    @IBOutlet weak var btnFSignUp: UIButton!{
+        didSet{
+            btnFSignUp.applyCircle()
+        }
+    }
     
     // MARK:- View LifeCycle
     // MARK:-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
+        
+        //Set Padding in Text
+        self.txtFName.setEmptyLeftView(WithPadding: 40)
+        self.txtFPassword.setEmptyLeftView(WithPadding: 40)
+        self.txtFMobileNumber.setEmptyLeftView(WithPadding: 40)
+        self.txtFGender.setEmptyLeftView(WithPadding: 40)
+        self.txtFDOB.setEmptyLeftView(WithPadding: 40)
+        self.txtFPassword.setEmptyLeftView(WithPadding: 40)
+        self.txtFEmailAddress.setEmptyLeftView(WithPadding: 40)        
     }
 }
 
@@ -87,3 +155,14 @@ extension SignUpVC {
         }
     }
 }
+
+
+//MARK: - Textfield Delegate -
+extension SignUpVC: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+

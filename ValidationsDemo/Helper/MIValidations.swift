@@ -9,29 +9,28 @@
 import Foundation
 import UIKit
 
-//MARK:- Validation Enums
-//MARK:-
+//MARK:- Validation Enums -
 
 enum ValidationOptions {
     case notEmpty, email, password, gender, dateOfBirth, mobileNumber, msgRange
 }
 
-//MARK:- Validation Messages
+//MARK:- Validation Messages -
 
-private let charLimitForName = 50
+private let charLimitForName = 15
 private let minAge = 1
 
 // Email
-let CBlankEmail = "Please enter the email address."
-let CBlankInvalidEmail = "Please enter valid email address."
+let CBlankEmail = "Please enter your email address."
+let CBlankInvalidEmail = "Please enter a valid email address."
 
 // MobileNumber
-let CBlankPhoneNumber = "Please enter the phone number."
-let CInvalidPhoneNumber = "Please enter valid phone number."
+let CBlankPhoneNumber = "Please enter your phone number."
+let CInvalidPhoneNumber = "Please enter a valid phone number."
 
 // ChangePassword
-private let CBlankOldPswd = "Please enter the old password."
-let CBlankPswd = "Please enter the password."
+private let CBlankOldPswd = "Please enter your old password."
+let CBlankPswd = "Please enter your password."
 private let CBlankNewPswd = "Please enter a new password."
 private let CInvalidNewPswd = "Password must be a minimum of 8 characters alphanumeric and must contain at least one special character."
 private let CMismatchNewConfirmPswd = "New password and confirm password doesn’t match."
@@ -39,22 +38,23 @@ private let CSameOldNewPswd = "New Password can not be same as Old password."
 private let CSameCurrentOldPswd = "Old Password must be same as Current Password"
 
 // Message or note
-private let CBlankMessage = "Please enter the message"
+private let CBlankMessage = "Please enter a message"
 
 // Sign up
 
 let CBlankGender = "Please select gender"
 let CBlankDateOfBirth = "Please select date of birth"
-private let CMinAge = "Age should be greater then required"
+private let CMinAge = "Age should be greater than required"
 let CBlankFullName = "Please enter your name"
 private let CBlankConfirmPswd = "Please enter confirm password."
-private let CExceedNameCharacterCount = "Name should not be more then 20 characters"
+private let CExceedNameCharacterCount = "Name should not be more than 15 characters"
 let CMale = "Male"
 let CFemale = "Female"
 let COther = "Other"
 
 // Constants
 let COk = "Ok"
+let CshadowColor = "lightRed"
 
 let CSharedApplication = UIApplication.shared
 let appDelegate = CSharedApplication.delegate as! AppDelegate
@@ -69,10 +69,8 @@ let CMainScreen = UIScreen.main
 let CBounds = CMainScreen.bounds
 let CScreenSize = CBounds.size
 let CScreenWidth = CScreenSize.width
-
-//MARK:- Validation methods
-//MARK:-
-
+ 
+//MARK:- Validation methods -
 struct ValidationModel {
     let validation: ValidationOptions?
     let value: Any?
@@ -80,8 +78,7 @@ struct ValidationModel {
 }
 
 class MIValidation {
-    
-    
+
     /// This Method Check to text is Blank or Not
     ///
     /// - Parameters:
@@ -343,7 +340,7 @@ class MIValidation {
             }
         }
         
-        if password.isBlank {
+        if password.isBlank || !password.isValidPassword{
             CTopMostViewController.presentAlertViewWithOneButtonMIV(alertTitle: nil, alertMessage: CBlankPswd, btnOneTitle: COk, btnOneTapped: nil)
             return false
         }
@@ -438,9 +435,7 @@ class MIValidation {
     
 }
 
-//MARK:- Extension - DateFormatter Singleton
-//MARK:-
-
+//MARK:- Extension - DateFormatter Singleton -
 extension DateFormatter {
     
     private static var sharedInstanceMIV: DateFormatter = {
@@ -464,9 +459,7 @@ extension DateFormatter {
     }
 }
 
-// MARK:- Extenstion UI ViewController
-// MARK:-
-
+// MARK:- Extenstion UI ViewController -
 extension UIViewController {
     
     typealias alertActionHandler = ((UIAlertAction) -> ())?
@@ -488,8 +481,7 @@ extension UIViewController {
     }
 }
 
-// MARK:- extension String
-// MARK:-
+// MARK:- extension String -
 extension String {
     
     var trim: String {
@@ -536,9 +528,7 @@ extension String {
     }
 }
 
-// MARK:- Extension UI Application
-// MARK:-
-
+// MARK:- Extension UI Application -
 extension UIApplication {
     
     var topMostViewControllerMIV: UIViewController {
