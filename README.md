@@ -2,7 +2,11 @@
 Field Validator is the simplest way to use custom field validator.This is one of the smart class for validating fields in a single line of code.  It's a very smart code saver class to validate name, password, DOB, Change password, email, phone number and many more.....
  
 ### MIFieldValidator
-![image](/Media/MIFieldValidator.gif)
+<img src = "https://user-images.githubusercontent.com/87411101/125917356-32c95bce-6798-4a79-8ba0-42d037b4028f.gif" width="200" height="400"> <img src = "https://user-images.githubusercontent.com/87411101/125918400-1bde0d2a-ff2d-4f28-a250-d8117b7f7e50.gif" width="200" height="400"> <img src = "https://user-images.githubusercontent.com/87411101/125918855-51d1ffd7-015f-4de2-be4e-60f8b43cc390.gif" width="200" height="400"> <img src = "https://user-images.githubusercontent.com/87411101/125918877-4249c344-4ac4-4b85-b843-50fc6c57fcbc.gif" width="200" height="400">
+
+
+
+
 
 ### Methods : 11
 
@@ -73,14 +77,14 @@ EX:- Email Textfield  -> txtFEmail and Password Textfield -> txtFPassword :
 - - - > Validate Change Password
 
 EX:-  TextField Value
-		- CurrentPassword = abc@1234
+		- CurrentPassword = mind@123
 		- OldPassword = txtFOldPass
 		- NewPassword = txtFNewPass
 		- ConfirmPassword = txtFConfirmPassword
 	
 	  — For Change Password Validation Only Call This
 
-	  MIValidation.changePassword(currentPassword: “abc@1234”, txtFOldPass.text, txtFNewPass.text, txtFConfirmPass.text)  		
+	  MIValidation.changePassword(currentPassword: “mind@123”, txtFOldPass.text, txtFNewPass.text, txtFConfirmPass.text)  		
 	  — Return True or False
 
 - - - > Validate SignUp with Normal Fields
