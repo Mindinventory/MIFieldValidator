@@ -26,8 +26,16 @@ final class LoginVC: UIViewController {
             btnLogin.applyCircle()
         }
     }
-    @IBOutlet weak private var txtFEmail: UITextField!
-    @IBOutlet weak private var txtFPassword: UITextField!
+    @IBOutlet weak private var txtFEmail: UITextField!{
+        didSet{
+            txtFEmail.delegate = self
+        }
+    }
+    @IBOutlet weak private var txtFPassword: UITextField!{
+        didSet{
+            txtFPassword.delegate = self
+        }
+    }
     @IBOutlet weak var imageVpassworkKey: UIImageView!
     @IBOutlet weak var imageVuser: UIImageView!
 
@@ -69,8 +77,7 @@ extension LoginVC {
 //MARK: - TextField Delegate -
 extension LoginVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        txtFPassword.resignFirstResponder()
-        txtFEmail.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
 }

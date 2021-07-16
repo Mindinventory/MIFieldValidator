@@ -31,9 +31,21 @@ final class ChangePasswordVC: UIViewController {
             btnFUpdate.applyCircle()
         }
     }
-    @IBOutlet weak var txtFOldPass: UITextField!
-    @IBOutlet weak var txtFNewPass: UITextField!
-    @IBOutlet weak var txtFConfirmPass: UITextField!
+    @IBOutlet weak var txtFOldPass: UITextField!{
+        didSet{
+            txtFOldPass.delegate = self
+        }
+    }
+    @IBOutlet weak var txtFNewPass: UITextField!{
+        didSet{
+            txtFNewPass.delegate = self
+        }
+    }
+    @IBOutlet weak var txtFConfirmPass: UITextField!{
+        didSet{
+            txtFConfirmPass.delegate = self
+        }
+    }
 
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
@@ -64,9 +76,7 @@ extension ChangePasswordVC {
 
 extension ChangePasswordVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        txtFNewPass.resignFirstResponder()
-        txtFOldPass.resignFirstResponder()
-        txtFConfirmPass.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
 }

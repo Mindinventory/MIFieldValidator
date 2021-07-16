@@ -21,7 +21,11 @@ final class ForgotPasswordVC: UIViewController {
             btnFsendLink.applyCircle()
         }
     }
-    @IBOutlet weak var txtFEmail: UITextField!
+    @IBOutlet weak var txtFEmail: UITextField!{
+        didSet{
+            txtFEmail.delegate = self
+        }
+    }
 
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
@@ -47,7 +51,7 @@ extension ForgotPasswordVC {
 
 extension ForgotPasswordVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        txtFEmail.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
 }
