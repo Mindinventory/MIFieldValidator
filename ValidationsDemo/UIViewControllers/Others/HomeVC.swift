@@ -8,8 +8,9 @@
 
 import UIKit
 
-final class HomeVC: UIViewController {
-    // MARK:- View LifeCycle -
+final class HomeVC: BaseViewController {
+
+   // MARK:- View LifeCycle -
    override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -19,24 +20,24 @@ final class HomeVC: UIViewController {
 // MARK:- General Methods -
 extension HomeVC {
     fileprivate func initialize() {
-        self.navigationController?.navigationBar.isHidden = false
+        self.isHideNavigationBar = false
         // Set Left Bar Button in Navigation Bar
-        let btnLogout = UIBarButtonItem(image: UIImage(named: "icLogOut"), style: .plain, target: self, action: #selector(onBack))
-        self.navigationItem.leftBarButtonItem = btnLogout
-        self.title = "Settings"
+        let logOutButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icLogOut"), style: .plain, target: self, action: #selector(onBack))
+        self.navigationItem.leftBarButtonItem = logOutButton
+        self.title = logOutTitle
     }
 }
 
 // MARK:- Action Events -
 extension HomeVC {
     @IBAction func onChangePasswordClicked(_ sender: UIButton) {
-        if let changePasswordVc = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordVC") as? ChangePasswordVC {
-            self.navigationController?.pushViewController(changePasswordVc, animated: true)
+        if let changePasswordVc = UIStoryboard.main.get(controller: ChangePasswordVC.self) {
+            self.push(To: changePasswordVc)
         }
     }
 
     @objc func onBack() {
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.popToRootViewController(animated: true)
+        self.isHideNavigationBar = true
+        self.popToRoot()
     }
 }

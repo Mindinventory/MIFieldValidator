@@ -55,6 +55,10 @@ let COther = "Other"
 // Constants
 let COk = "Ok"
 let CshadowColor = "lightRed"
+let CCurrentPassword = "mind@123"
+let CPasswordChangeAlert = "Password Changed Succesfully"
+let logOutTitle = "Settings"
+let dateFormat = "dd MMM yyyy"
 
 let CSharedApplication = UIApplication.shared
 let appDelegate = CSharedApplication.delegate as! AppDelegate

@@ -8,133 +8,84 @@
 
 import UIKit
 
-final class SignUpVC: UIViewController {
-
+final class SignUpVC: BaseViewController {
+    
     // MARK:- IBOutlets -
-    @IBOutlet weak var viewFPasswordImage: UIView!{
-        didSet{
-            viewFPasswordImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFDOBImage: UIView!{
-        didSet{
-            viewFDOBImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFGenderImage: UIView!{
-        didSet{
-            viewFGenderImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFMobileNumberImage: UIView!{
-        didSet{
-            viewFMobileNumberImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFEmailAddressImage: UIView!{
-        didSet{
-            viewFEmailAddressImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFNameImage: UIView!{
-        didSet{
-            viewFNameImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var btnFSignUp: UIButton!{
-        didSet{
-            btnFSignUp.applyCircle()
-        }
-    }
-    @IBOutlet weak var txtFName: UITextField!{
-        didSet{
-            txtFName.delegate = self
-        }
-    }
-    @IBOutlet weak var txtFEmailAddress: UITextField!{
-        didSet{
-            txtFEmailAddress.delegate = self
-        }
-    }
-    @IBOutlet weak var txtFMobileNumber: UITextField!{
-        didSet{
-            txtFMobileNumber.delegate = self
-        }
-    }
-    @IBOutlet weak var txtFGender: UITextField!{
-        didSet{
-            txtFGender.delegate = self
-        }
-    }
-    @IBOutlet weak var txtFDOB: UITextField!{
-        didSet{
-            txtFDOB.delegate = self
-        }
-    }
-    @IBOutlet weak var txtFPassword: UITextField!{
-        didSet{
-            txtFPassword.delegate = self
-        }
-    }
+    @IBOutlet private weak var nameFieldView: InputBaseView!
+    @IBOutlet private weak var eMailFieldView: InputBaseView!
+    @IBOutlet private weak var numberFieldView: InputBaseView!
+    @IBOutlet private weak var genderFieldView: InputBaseView!
+    @IBOutlet private weak var dobFieldView: InputBaseView!
+    @IBOutlet private weak var passwordFieldView: InputBaseView!
+    @IBOutlet private weak var signUpButton: UIButton!
 
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
     }
+
+    //MARK: - ConfigUI -
+    override func configUI() {
+        signUpButton.applyCircle()
+        eMailFieldView.textField.keyboardType = .emailAddress
+        numberFieldView.textField.keyboardType = .numberPad
+    }
 }
 
 // MARK:- General Methods -
 extension SignUpVC {
+
     fileprivate func initialize() {
         // Set Date Picker on TxtFDOB
-        txtFDOB.setDatePickerMode(mode: .date)
-        txtFDOB.setDatePickerWithDateFormate(
-            dateFormate: "dd MMM yyyy",
+        dobFieldView.textField.setDatePickerMode(mode: .date)
+        dobFieldView.textField.setDatePickerWithDateFormate(
+            dateFormate: dateFormat,
             defaultDate: Date(),
             isPrefilledDate: false) { (date) in
-            self.txtFDOB.text = "\(DateFormatter.sharedMIV().stringMIV(fromDate: date, dateFormat: "dd MMM yyyy"))"
+            self.dobFieldView.textField.text = "\(DateFormatter.sharedMIV().stringMIV(fromDate: date, dateFormat: dateFormat))"
         }
-        
+
         // Set Picker on TxtFGender
-        self.txtFGender.setPickerData(
+        self.genderFieldView.textField.setPickerData(
             arrPickerData: [CMale, CFemale, COther],
             selectedPickerDataHandler: { (text, row, component) in
-                self.txtFGender.text = text
+                self.genderFieldView.textField.text = text
             }, defaultPlaceholder: nil)
+    }
+
+    private func removeInputValues() {
+        nameFieldView.textField.text = ""
+        dobFieldView.textField.text = ""
+        genderFieldView.textField.text = ""
+        eMailFieldView.textField.text = ""
+        numberFieldView.textField.text = ""
     }
 }
 
 // MARK:- Action Events -
 extension SignUpVC {
-
     @IBAction func onLoginClicked(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.pop()
     }
-
+    
     @IBAction func onSignUpClicked(_ sender: UIButton) {
-
         let arrValidationModel = [
-            ValidationModel(validation: .msgRange, value: txtFName?.text?.trim, message: CBlankFullName),
-            ValidationModel(validation: .email, value: txtFEmailAddress?.text?.trim, message: CBlankEmail),
-            ValidationModel(validation: .mobileNumber, value: txtFMobileNumber?.text?.trim, message: CBlankPhoneNumber),
-            ValidationModel(validation: .notEmpty, value: txtFGender?.text?.trim, message: CBlankGender),
-            ValidationModel(validation: .dateOfBirth, value: self.txtFDOB?.text, message: CBlankDateOfBirth),
-            ValidationModel(validation: .password, value: txtFPassword?.text?.trim, message: CBlankPswd)
+            ValidationModel(validation: .msgRange, value: nameFieldView.textField.text?.trim, message: CBlankFullName),
+            ValidationModel(validation: .email, value: eMailFieldView.textField.text?.trim, message: CBlankEmail),
+            ValidationModel(validation: .mobileNumber, value: numberFieldView.textField.text?.trim, message: CBlankPhoneNumber),
+            ValidationModel(validation: .notEmpty, value:genderFieldView.textField.text?.trim, message: CBlankGender),
+            ValidationModel(validation: .dateOfBirth, value: dobFieldView.textField.text?.trim, message: CBlankDateOfBirth),
+            ValidationModel(validation: .password, value: passwordFieldView.textField.text?.trim, message: CBlankPswd)
         ]
         
         // Check Validation Of SignUp
         if MIValidation.isValidData(arrValidationModel) {
             self.view.endEditing(true)
-            self.txtFName.text = ""
-            self.txtFDOB.text = ""
-            self.txtFGender.text = ""
-            self.txtFEmailAddress.text = ""
-            self.txtFGender.text = ""
-            self.txtFMobileNumber.text = ""
+            removeInputValues()
             // Navigate Home Screen
-            if let homeVc = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as? HomeVC {
-                self.navigationController?.pushViewController(homeVc, animated: true)
+            if let homeVc = UIStoryboard.main.get(controller: HomeVC.self) {
+                self.push(To: homeVc)
             }
         }
     }

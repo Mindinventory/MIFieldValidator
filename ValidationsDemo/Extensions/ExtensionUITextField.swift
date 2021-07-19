@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - Extension of UITextField For UITextField's placeholder Color. -
 extension UITextField {
 
@@ -26,9 +25,7 @@ extension UITextField {
     }
 }
 
-
 // MARK: - Extension of UITextField For Adding Left & Right padding of text -
-
 extension UITextField {
 
     func setEmptyLeftView(WithPadding padding:CGFloat){
@@ -46,10 +43,8 @@ extension UITextField {
     }
 }
 
-
 // MARK: - Extension of UITextField For Adding Left & Right View For UITextField. -
 extension UITextField {
-
     /// This method is used to add a leftView of UITextField.
     ///
     /// - Parameters:
@@ -84,7 +79,6 @@ typealias selectedDateHandler = ((Date) -> ())
 
 // MARK: - Extension of UITextField For DatePicker as UITextField's inputView. -
 extension UITextField {
-
     /// This Private Structure is used to create all AssociatedObjectKey which will be used within this extension.
     fileprivate struct AssociatedObjectKey {
         static var txtFieldDatePicker = "txtFieldDatePicker"
@@ -108,7 +102,6 @@ extension UITextField {
     ///
     /// - Returns: return a newly created UIDatePicker.
     private func addDatePicker() -> UIDatePicker {
-
         let txtFieldDatePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 200))
         self.inputView = txtFieldDatePicker
         txtFieldDatePicker.addTarget(self, action: #selector(self.handleDateSelection(sender:)), for: .valueChanged)
@@ -119,7 +112,6 @@ extension UITextField {
 
     /// A Computed Property of DateFormatter , If its already in memory then return it OR not then create new one and store it in memory reference.
     fileprivate var datePickerDateFormatter: DateFormatter? {
-
         if let datePickerDateFormatter = objc_getAssociatedObject(self, &AssociatedObjectKey.datePickerDateFormatter) as? DateFormatter {
             return datePickerDateFormatter
         } else {
@@ -185,7 +177,6 @@ extension UITextField {
     ///   - isPrefilledDate: A Bool value will help you to prefilled the UITextField with Default Value when UIDatePicker Present.
     ///   - selectedDateHandler: A Handler Block returns a selected date.
     func setDatePickerWithDateFormate(dateFormate: String, defaultDate: Date? , isPrefilledDate: Bool, selectedDateHandler: @escaping selectedDateHandler) {
-
         self.inputView = self.txtFieldDatePicker
         self.setDateFormate(dateFormat: dateFormate)
         objc_setAssociatedObject(self, &AssociatedObjectKey.selectedDateHandler, selectedDateHandler, .OBJC_ASSOCIATION_RETAIN)
@@ -206,14 +197,13 @@ extension UITextField {
     ///
     /// - Returns: return newly created UIToolbar
     fileprivate func addToolBar() -> UIToolbar {
-
         let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: CScreenWidth, height: 44.0))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let btnDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.btnDoneTapped(sender:)))
         toolBar.setItems([flexibleSpace, btnDone], animated: true)
         return toolBar
     }
-
+    
     /// A Private method used to handle the touch event of button Done(A UIToolbar Button).
     ///
     /// - Parameter sender: UIBarButtonItem
@@ -226,7 +216,6 @@ typealias selectedPickerDataHandler = ((_ text: String, _ row: Int, _ component:
 
 // MARK:- UIPickerViewDataSource  & UIPickerViewDelegate -
 extension UITextField: UIPickerViewDataSource, UIPickerViewDelegate {
-
     fileprivate struct AssociatedObjectKeyTwo {
         static var txtFieldPickerView = "txtFieldPickerView"
         static var selectedPickerDataHandler = "selectedPickerDataHandler"
@@ -242,7 +231,6 @@ extension UITextField: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     private func addPickerView() -> UIPickerView {
-
         let txtFieldPickerView = UIPickerView()
         txtFieldPickerView.dataSource  = self
         txtFieldPickerView.delegate  = self
@@ -269,7 +257,6 @@ extension UITextField: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     private func setUpArrPickerData(arrPickerData: [Any], defaultPlaceholder: String?) {
-
         var arrPickerData = arrPickerData
         if defaultPlaceholder != nil {
             arrPickerData.insert(defaultPlaceholder!, at: 0)
@@ -306,12 +293,9 @@ extension UITextField: UIPickerViewDataSource, UIPickerViewDelegate {
 
 // MARK:- UITextFieldDelegate -
 extension UITextField: UITextFieldDelegate {
-
     /// Delegate method of UITextFieldDelegate.
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-
         if let _ = self.inputView as? UIDatePicker {
-
             if let isPrefilledDate = objc_getAssociatedObject(self, &AssociatedObjectKey.isPrefilledDate) as? Bool {
                 if isPrefilledDate {
                     if let defaultDate = objc_getAssociatedObject(self, &AssociatedObjectKey.defaultDate) as? Date {
@@ -321,14 +305,11 @@ extension UITextField: UITextFieldDelegate {
                 }
             }
         } else if let _ = self.inputView as? UIPickerView {
-
             if let arrPickerData = arrPickerData {
-
                 if let index = arrPickerData.firstIndex(where: {($0 as? String) == textField.text}) {
-
                     self.text = "\(arrPickerData[index])"
                     txtFieldPickerView?.selectRow(index, inComponent: 0, animated: false)
-
+                    
                     if let selectedPickerDataHandler = objc_getAssociatedObject(self, &AssociatedObjectKeyTwo.selectedPickerDataHandler) as? selectedPickerDataHandler {
                         selectedPickerDataHandler(self.text ?? "", index, 0)
                     }

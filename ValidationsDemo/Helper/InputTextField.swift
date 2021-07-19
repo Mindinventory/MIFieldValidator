@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: - Configuration of Textifelds -
 final class InputTextField : UITextField {
 
     override init(frame: CGRect) {
@@ -20,6 +21,7 @@ final class InputTextField : UITextField {
         configUI()
     }
 
+    // Method for Configuring UI
     private func configUI() {
         self.configShadowAndBorder()
         self.setEmptyLeftView(WithPadding: 40)

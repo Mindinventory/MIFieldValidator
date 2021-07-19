@@ -8,48 +8,29 @@
 
 import UIKit
 
-final class ChangePasswordVC: UIViewController {
+final class ChangePasswordVC: BaseViewController {
 
     // MARK:- IBOutlets -
-    @IBOutlet weak var viewFConfirmPasswordImage: UIView!{
-        didSet{
-            viewFConfirmPasswordImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFNewPasswordImage: UIView!{
-        didSet{
-            viewFNewPasswordImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFOldPasswordImage: UIView!{
-        didSet{
-            viewFOldPasswordImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var btnFUpdate: UIButton!{
-        didSet{
-            btnFUpdate.applyCircle()
-        }
-    }
-    @IBOutlet weak var txtFOldPass: UITextField!{
-        didSet{
-            txtFOldPass.delegate = self
-        }
-    }
-    @IBOutlet weak var txtFNewPass: UITextField!{
-        didSet{
-            txtFNewPass.delegate = self
-        }
-    }
-    @IBOutlet weak var txtFConfirmPass: UITextField!{
-        didSet{
-            txtFConfirmPass.delegate = self
-        }
-    }
+    @IBOutlet private weak var confirmPasswordFieldView: InputBaseView!
+    @IBOutlet private weak var newPasswordFieldView: InputBaseView!
+    @IBOutlet private weak var oldPasswordFieldView: InputBaseView!
+    @IBOutlet private weak var updateButton: UIButton!
 
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isHideNavigationBar = false
+    }
+
+    // MARK:- General Methods -
+    private func removeInputValues() {
+        self.oldPasswordFieldView.textField.text = ""
+        self.newPasswordFieldView.textField.text = ""
+        self.confirmPasswordFieldView.textField.text = ""
+    }
+
+    override func configUI() {
+        updateButton.applyCircle()
     }
 }
 
@@ -57,26 +38,22 @@ final class ChangePasswordVC: UIViewController {
 extension ChangePasswordVC {
     @IBAction func onUpdateClicked(_ sender: UIButton) {
         // Check Validation For Change Password
-        let currentPassword = "mind@123" // For Testing Set Current Password mind@123
-        if MIValidation.changePassword(currentPassword: currentPassword, txtFOldPass.text?.trim ?? "", txtFNewPass.text?.trim ?? "", txtFConfirmPass.text?.trim ?? "") {
-            
+        let currentPassword = CCurrentPassword // For Testing Set Current Password mind@123
+        if MIValidation.changePassword(
+            currentPassword: currentPassword,
+            oldPasswordFieldView.textField.text?.trim ?? "",
+            newPasswordFieldView.textField.text?.trim ?? "",
+            confirmPasswordFieldView.textField.text?.trim ?? ""
+        ) {
             self.view.endEditing(true)
             CTopMostViewController.presentAlertViewWithOneButtonMIV(
                 alertTitle: nil,
-                alertMessage: "Password Changed Succesfully",
+                alertMessage: CPasswordChangeAlert ,
                 btnOneTitle: COk) { (onOkClicked) in
-                self.txtFOldPass.text = ""
-                self.txtFNewPass.text = ""
-                self.txtFConfirmPass.text = ""
-                self.navigationController?.popViewController(animated: true)
+                self.removeInputValues()
+                self.pop()
             }
         }
     }
 }
 
-extension ChangePasswordVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}

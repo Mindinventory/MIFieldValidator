@@ -8,33 +8,25 @@
 
 import UIKit
 
-final class ForgotPasswordVC: UIViewController {
+final class ForgotPasswordVC: BaseViewController {
 
     // MARK:- IBOutlets -
-    @IBOutlet weak var viewFEmailImage: UIView!{
-        didSet{
-            viewFEmailImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var btnFsendLink: UIButton!{
-        didSet{
-            btnFsendLink.applyCircle()
-        }
-    }
-    @IBOutlet weak var txtFEmail: UITextField!{
-        didSet{
-            txtFEmail.delegate = self
-        }
-    }
+    @IBOutlet private weak var emailFieldView: InputBaseView!
+    @IBOutlet private weak var sendLinkButton: UIButton!
 
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
+        self.isHideNavigationBar = false
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        self.isHideNavigationBar = true
+    }
+
+    // MARK:- General Methods -
+    override func configUI() {
+        sendLinkButton.applyCircle()
     }
 }
 
@@ -42,17 +34,10 @@ final class ForgotPasswordVC: UIViewController {
 extension ForgotPasswordVC {
     @IBAction func onSendLinkClicked(_ sender: UIButton) {
         // Check Forgot Password Validation
-        if MIValidation.isValidEmail(self.txtFEmail.text) {
+        if MIValidation.isValidEmail(self.emailFieldView.textField.text) {
             self.view.endEditing(true)
-            self.navigationController?.popViewController(animated: true)
+            self.pop()
         }
-    }
-}
-
-extension ForgotPasswordVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }
 

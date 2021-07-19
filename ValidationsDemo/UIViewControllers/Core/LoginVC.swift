@@ -8,41 +8,28 @@
 
 import UIKit
 
-final class LoginVC: UIViewController {
+final class LoginVC: BaseViewController {
 
     // MARK:- IBOutlets -
-    @IBOutlet weak var viewFUserImage: UIView!{
-        didSet{
-            viewFUserImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var viewFpasswordImage: UIView!{
-        didSet{
-            viewFpasswordImage.configShadowAndBorder()
-        }
-    }
-    @IBOutlet weak var btnLogin: UIButton!{
-        didSet{
-            btnLogin.applyCircle()
-        }
-    }
-    @IBOutlet weak private var txtFEmail: UITextField!{
-        didSet{
-            txtFEmail.delegate = self
-        }
-    }
-    @IBOutlet weak private var txtFPassword: UITextField!{
-        didSet{
-            txtFPassword.delegate = self
-        }
-    }
-    @IBOutlet weak var imageVpassworkKey: UIImageView!
-    @IBOutlet weak var imageVuser: UIImageView!
+    @IBOutlet private weak var eMailFieldView: InputBaseView!
+    @IBOutlet private weak var passwordFieldView: InputBaseView!    
+    @IBOutlet private weak var loginButton: UIButton!
 
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    // MARK:- General Methods -
+    private func removeInputValues() {
+        self.eMailFieldView.textField.text = ""
+        self.passwordFieldView.textField.text = ""
+    }
+
+    override func configUI() {
+        loginButton.applyCircle()
+        eMailFieldView.textField.keyboardType = .emailAddress
+        passwordFieldView.textField.isSecureTextEntry = true
     }
 }
 
@@ -50,34 +37,28 @@ final class LoginVC: UIViewController {
 extension LoginVC {
     @IBAction func onLoginClicked(_ sender: UIButton) {
         // Check Validation For Login Screen
-        if MIValidation.isUserCanAbleToLogin(txtFEmail.text ?? "",txtFPassword.text ?? "") {
-            self.txtFEmail.text = ""
-            self.txtFPassword.text = ""
-            if let homeVc = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as? HomeVC {
-                self.navigationController?.pushViewController(homeVc, animated: true)
+        if MIValidation.isUserCanAbleToLogin(
+            eMailFieldView.textField.text ?? "",
+            passwordFieldView.textField.text ?? ""
+        ) {
+            removeInputValues()
+            if let homeVc = UIStoryboard.main.get(controller: HomeVC.self) {
+                self.push(To: homeVc)
             }
         }
     }
 
     @IBAction func onForgotPassClicked(_ sender: UIButton) {
         // Navigate to Forgot Password Screen
-        if let forgotPasswordVc = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordVC") {
-            self.navigationController?.pushViewController(forgotPasswordVc, animated: true)
+        if let forgotPasswordVc = UIStoryboard.main.get(controller: ForgotPasswordVC.self) {
+            self.push(To: forgotPasswordVc)
         }
     }
 
     @IBAction func onSignUpClicked(_ sender: UIButton) {
         // Navigate to Sign Up Screen
-        if let signUpVc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVC") {
-            self.navigationController?.pushViewController(signUpVc, animated: true)
+        if let signUpVc = UIStoryboard.main.get(controller: SignUpVC.self) {
+            self.push(To: signUpVc)
         }
-    }
-}
-
-//MARK: - TextField Delegate -
-extension LoginVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }
