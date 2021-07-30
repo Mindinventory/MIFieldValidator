@@ -21,8 +21,12 @@
 		7041EAB9234864FD00273526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7041EAB8234864FD00273526 /* Assets.xcassets */; };
 		7041EABC234864FD00273526 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7041EABA234864FD00273526 /* LaunchScreen.storyboard */; };
 		7041EAC4234865C200273526 /* MIValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7041EAC3234865C200273526 /* MIValidations.swift */; };
+		AA37060A26B3CC1200EEE381 /* InputBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA37060926B3CC1200EEE381 /* InputBaseView.xib */; };
+		AA37061126B3D88400EEE381 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA37060D26B3D88400EEE381 /* Poppins-Medium.ttf */; };
+		AA37061226B3D88400EEE381 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA37060E26B3D88400EEE381 /* Poppins-Regular.ttf */; };
+		AA37061326B3D88400EEE381 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA37060F26B3D88400EEE381 /* Poppins-Bold.ttf */; };
+		AA37061426B3D88400EEE381 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA37061026B3D88400EEE381 /* Poppins-SemiBold.ttf */; };
 		B5938B262CD0FEA74CFE0D25 /* Pods_ValidationsDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A718F8F2E14FC6257E4EE18 /* Pods_ValidationsDemo.framework */; };
-		B8B745D226A1A31E00435F6F /* InputBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8B745D126A1A31E00435F6F /* InputBaseView.xib */; };
 		B8B745D426A1A32F00435F6F /* InputBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B745D326A1A32F00435F6F /* InputBaseView.swift */; };
 		B8B812F4269EE65F0007E149 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B812F3269EE65F0007E149 /* ExtensionUIView.swift */; };
 		B8EFD52626A59BC700B26240 /* ExtensionUIStoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EFD52526A59BC700B26240 /* ExtensionUIStoryBoard.swift */; };
@@ -47,7 +51,11 @@
 		7041EABB234864FD00273526 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7041EABD234864FD00273526 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7041EAC3234865C200273526 /* MIValidations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIValidations.swift; sourceTree = "<group>"; };
-		B8B745D126A1A31E00435F6F /* InputBaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputBaseView.xib; sourceTree = "<group>"; };
+		AA37060926B3CC1200EEE381 /* InputBaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputBaseView.xib; sourceTree = "<group>"; };
+		AA37060D26B3D88400EEE381 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		AA37060E26B3D88400EEE381 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		AA37060F26B3D88400EEE381 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		AA37061026B3D88400EEE381 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		B8B745D326A1A32F00435F6F /* InputBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBaseView.swift; sourceTree = "<group>"; };
 		B8B812F3269EE65F0007E149 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		B8EFD52526A59BC700B26240 /* ExtensionUIStoryBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIStoryBoard.swift; sourceTree = "<group>"; };
@@ -105,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				7041EAB1234864FB00273526 /* AppDelegate.swift */,
+				AA37060B26B3D88400EEE381 /* Resources */,
 				B8B812F7269F181E0007E149 /* Helper */,
 				B8B812F5269F18030007E149 /* Extensions */,
 				B8B812F6269F18140007E149 /* Storyboard */,
@@ -114,6 +123,25 @@
 				7041EABD234864FD00273526 /* Info.plist */,
 			);
 			path = ValidationsDemo;
+			sourceTree = "<group>";
+		};
+		AA37060B26B3D88400EEE381 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA37060C26B3D88400EEE381 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AA37060C26B3D88400EEE381 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AA37060D26B3D88400EEE381 /* Poppins-Medium.ttf */,
+				AA37060E26B3D88400EEE381 /* Poppins-Regular.ttf */,
+				AA37060F26B3D88400EEE381 /* Poppins-Bold.ttf */,
+				AA37061026B3D88400EEE381 /* Poppins-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B84CE96926A04BCD0032F7E8 /* Core */ = {
@@ -168,7 +196,7 @@
 		B8EFD52426A5866200B26240 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B8B745D126A1A31E00435F6F /* InputBaseView.xib */,
+				AA37060926B3CC1200EEE381 /* InputBaseView.xib */,
 				B8B745D326A1A32F00435F6F /* InputBaseView.swift */,
 			);
 			path = View;
@@ -243,10 +271,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA37060A26B3CC1200EEE381 /* InputBaseView.xib in Resources */,
 				7041EABC234864FD00273526 /* LaunchScreen.storyboard in Resources */,
-				B8B745D226A1A31E00435F6F /* InputBaseView.xib in Resources */,
+				AA37061326B3D88400EEE381 /* Poppins-Bold.ttf in Resources */,
 				7041EAB9234864FD00273526 /* Assets.xcassets in Resources */,
+				AA37061226B3D88400EEE381 /* Poppins-Regular.ttf in Resources */,
+				AA37061426B3D88400EEE381 /* Poppins-SemiBold.ttf in Resources */,
 				7041EAB7234864FB00273526 /* Main.storyboard in Resources */,
+				AA37061126B3D88400EEE381 /* Poppins-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,8 @@ import UIKit
 final class SignUpVC: BaseViewController {
     
     // MARK:- IBOutlets -
+    
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet private weak var nameFieldView: InputBaseView!
     @IBOutlet private weak var eMailFieldView: InputBaseView!
     @IBOutlet private weak var numberFieldView: InputBaseView!
@@ -30,6 +32,13 @@ final class SignUpVC: BaseViewController {
         signUpButton.applyCircle()
         eMailFieldView.textField.keyboardType = .emailAddress
         numberFieldView.textField.keyboardType = .numberPad
+        
+        containerView.makeRoundedCorner(cornderRadious: 20, isTopLeftCorner: true, isTopRightCorner: true, isBottomLeftCorner: false, isBottomRightCorner: false)
+
+    }
+    
+    @IBAction func onBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

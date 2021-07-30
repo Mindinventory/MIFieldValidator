@@ -54,7 +54,7 @@ let COther = "Other"
 
 // Constants
 let COk = "Ok"
-let CshadowColor = "lightRed"
+let CshadowColor = "shadowColor"
 let CCurrentPassword = "mind@123"
 let CPasswordChangeAlert = "Password Changed Succesfully"
 let logOutTitle = "Settings"

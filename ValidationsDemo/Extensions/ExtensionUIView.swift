@@ -12,7 +12,7 @@ import UIKit
 extension UIView {
     func configShadowAndBorder() {
         self.applyCircle()
-        self.dropShadow(shadowRadius: 7)
+//        self.dropShadow(shadowRadius: 7)
         self.addBorder(width: 0.25)
         self.backgroundColor = .white
     }
@@ -37,5 +37,46 @@ extension UIView {
         self.layer.cornerRadius = min(self.frame.size.height, self.frame.size.width)*0.5
         self.layer.masksToBounds = false
         self.clipsToBounds = true
+    }
+    
+    
+    //MARK: make rounded corner from specifics sides
+    func makeRoundedCorner (cornderRadious: Double , isTopLeftCorner: Bool , isTopRightCorner: Bool , isBottomLeftCorner: Bool , isBottomRightCorner: Bool) {
+        
+        var corners = [CACornerMask]()
+        
+        if isTopLeftCorner {
+            corners.append(.layerMinXMinYCorner)
+        }
+        
+        if isTopRightCorner {
+            corners.append(.layerMaxXMinYCorner)
+        }
+        
+        if isBottomLeftCorner {
+            corners.append(.layerMinXMaxYCorner)
+        }
+        if isBottomRightCorner {
+            corners.append(.layerMaxXMaxYCorner)
+        }
+        
+        
+        
+        self.layer.cornerRadius = CGFloat(cornderRadious)
+        self.clipsToBounds = true
+        
+        switch corners.count {
+        case 1:
+            self.layer.maskedCorners = [corners[0]]
+        case 2:
+        self.layer.maskedCorners = [corners[0],corners[1]]
+        case 3:
+        self.layer.maskedCorners = [corners[0],corners[1],corners[2]]
+        case 4:
+        self.layer.maskedCorners = [corners[0],corners[1],corners[2],corners[3]]
+        default:
+            break
+        }
+        
     }
 }

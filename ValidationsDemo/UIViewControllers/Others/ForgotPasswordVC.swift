@@ -11,13 +11,16 @@ import UIKit
 final class ForgotPasswordVC: BaseViewController {
 
     // MARK:- IBOutlets -
+    
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet private weak var emailFieldView: InputBaseView!
     @IBOutlet private weak var sendLinkButton: UIButton!
+    
 
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.isHideNavigationBar = false
+        self.isHideNavigationBar = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -27,7 +30,13 @@ final class ForgotPasswordVC: BaseViewController {
     // MARK:- General Methods -
     override func configUI() {
         sendLinkButton.applyCircle()
+        containerView.makeRoundedCorner(cornderRadious: 20, isTopLeftCorner: true, isTopRightCorner: true, isBottomLeftCorner: false, isBottomRightCorner: false)
     }
+    
+    @IBAction func onBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 // MARK:- Action Events -

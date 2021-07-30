@@ -11,6 +11,8 @@ import UIKit
 final class ChangePasswordVC: BaseViewController {
 
     // MARK:- IBOutlets -
+    
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet private weak var confirmPasswordFieldView: InputBaseView!
     @IBOutlet private weak var newPasswordFieldView: InputBaseView!
     @IBOutlet private weak var oldPasswordFieldView: InputBaseView!
@@ -19,7 +21,7 @@ final class ChangePasswordVC: BaseViewController {
     // MARK:- View LifeCycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.isHideNavigationBar = false
+        self.isHideNavigationBar = true
     }
 
     // MARK:- General Methods -
@@ -30,7 +32,19 @@ final class ChangePasswordVC: BaseViewController {
     }
 
     override func configUI() {
+        
+        oldPasswordFieldView.textField.isSecureTextEntry = true
+        newPasswordFieldView.textField.isSecureTextEntry = true
+        confirmPasswordFieldView.textField.isSecureTextEntry = true
+
+        
         updateButton.applyCircle()
+        containerView.makeRoundedCorner(cornderRadious: 20, isTopLeftCorner: true, isTopRightCorner: true, isBottomLeftCorner: false, isBottomRightCorner: false)
+    }
+    
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

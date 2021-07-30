@@ -11,6 +11,8 @@ import UIKit
 final class LoginVC: BaseViewController {
 
     // MARK:- IBOutlets -
+    
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet private weak var eMailFieldView: InputBaseView!
     @IBOutlet private weak var passwordFieldView: InputBaseView!    
     @IBOutlet private weak var loginButton: UIButton!
@@ -30,6 +32,7 @@ final class LoginVC: BaseViewController {
         loginButton.applyCircle()
         eMailFieldView.textField.keyboardType = .emailAddress
         passwordFieldView.textField.isSecureTextEntry = true
+        containerView.makeRoundedCorner(cornderRadious: 20, isTopLeftCorner: true, isTopRightCorner: true, isBottomLeftCorner: false, isBottomRightCorner: false)
     }
 }
 

@@ -42,7 +42,7 @@ class InputBaseView: NibView {
     //Method to configure UI
     private func configUI() {
         self.layoutIfNeeded()
-        iconContainerView.configShadowAndBorder()
+//        iconContainerView.configShadowAndBorder()
     }
 }
 

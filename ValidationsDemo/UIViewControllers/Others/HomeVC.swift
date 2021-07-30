@@ -14,6 +14,12 @@ final class HomeVC: BaseViewController {
    override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
+    
+    self.isHideNavigationBar = true
+    }
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
